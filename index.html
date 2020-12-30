@@ -1,15 +1,81 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Messenger</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page">
+    <div class="content title">Messenger</div>
 
+    <div class="content description">
+        <div class="description__text">
+            Messenger — корпоративный мессенджер. Бесплатные и безопасные сообщения по всему миру
+        </div>
+        <ul>
+            <li>
+                <span>Дизайн:</span>
+                <a class="description__link"
+                   href="https://www.figma.com/file/HC62Px6p0GaiZyuhPul93T/Chat-Dashboard?node-id=1%3A26">Link</a>
+            </li>
+            <li>
+                <span>Git:</span>
+                <a class="description__link"
+                   href="https://github.com/SurinVIktor/O_n_i_x___internship">Link</a>
+            </li>
+        </ul>
+    </div><!-- description end -->
+
+    <div class="content workspace">
+        <ol class="workspace__list">
+            <li class="workspace__item">
+                <div class="workspace__question">
+                    Что такое система контроля версий и зачем она нужна?
+                </div>
+                <div>
+                    Система управления версиями позволяет хранить несколько версий одного и того же документа,
+                    при необходимости возвращаться к более ранним версиям, определять, кто и когда сделал то
+                    или иное изменение, и многое другое.
+                </div>
+            </li>
+            <li class="workspace__item">
+                <div class="workspace__question">
+                    Git
+                </div>
+                <div>
+                    checkout, add, commit, pull, push, status, log
+                </div>
+            </li>
+            <li class="workspace__item">
+                <div class="workspace__question">
+                    Что такое nodejs, зачем он нужен и как устанавливать?
+                </div>
+                <div>
+                    Программная платформа с помощью которой можно писать код на языке JS
+                </div>
+            </li>
+            <li class="workspace__item">
+                <div class="workspace__question">
+                    Что такое менеджер пакетов, установка npm
+                </div>
+                <div>
+                    <p class="workspace__p">Менеджер пакетов это преложение с помощью которого можно утсанавливать
+                        различные модули и управлять зависимостями. Популярные менеджеры пакетов - npm и yarn.</p>
+                    <p class="workspace__p">Для работы с npm вам просто нужно установить Node.js, npm идет с ним в коробке, как бонус.</p>
+                </div>
+            </li>
+        </ol>
+    </div><!-- workspace end -->
+
+    <div class="content content--right content--blue author">
+        <div class="author__img"></div>
+        <div>
+            <div class="author__name">Сурин Виктор</div>
+            <div class="author__info">Web Developer</div>
+        </div>
+    </div><!-- author end -->
 </body>
 </html>

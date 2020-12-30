@@ -1,2 +1,118 @@
-@import url('reset.css');
+/*===================== TABLE OF CONTENT =======================
+1.	Fonts
+2.  Reset
+3.  Page
+4.  Content
+5.  Title
+6.  Description
+7.  Workspace
+8.  Author
+
+=============================================================*/
+
+
+
+
+/* ================ FONTS =============== */
 @import url('fonts/fonts.css');
+
+/* ================ RESET =============== */
+@import url('reset.css');
+
+/* ================ PAGE =============== */
+.page {
+    background: linear-gradient(180deg, #F3F3FB 0%, #FDFBFD 100%);
+    height: 100vh;
+    padding-top: 35px;
+}
+
+/* ================ CONTENT =============== */
+.content {
+    max-width: 1200px;
+    width: 100%;
+    background: #fff;
+    margin: 0 auto 20px;
+    padding: 30px;
+    border-radius: 6px;
+}
+.content--right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.content--blue {
+    background: linear-gradient(96.78deg, #7CB8F7 0%, #2A8BF2 100%);
+}
+
+/* ================ TITLE =============== */
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 21px;
+    text-align: center;
+    color: #0D1C2E;
+}
+
+/* ================ DESCRIPTION =============== */
+.description {
+    font-size: 16px;
+    line-height: 26px;
+    color: #707C97;
+}
+.description__text {
+    margin-bottom: 17px;
+}
+.description__link {
+    margin-left: 10px;
+    color: #2A8BF2;
+}
+
+/* ================ WORKSPACE =============== */
+.workspace {
+    color: #707C97;
+}
+.workspace__list {
+    list-style-type: decimal;
+}
+.workspace__item {
+    margin-bottom: 22px;
+}
+.workspace__item:last-child {
+    margin-bottom: 0;
+}
+.workspace__question {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.workspace__p {
+    margin-bottom: 10px;
+}
+.workspace__p:last-child {
+    margin-bottom: 0;
+}
+
+/* ================ AUTHOR =============== */
+.author {
+    display: flex;
+    align-items: center;
+}
+.author__img {
+    background-image: url("../img/author.jpg");
+    background-size: cover;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.author__name {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #0D1C2E;
+    margin-bottom: 6px;
+}
+.author__info {
+    font-size: 16px;
+    line-height: 19px;
+    color: #fff;
+}
