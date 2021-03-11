@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Index extends React.Component {
+class Faq extends React.Component {
     render() {
         return(
             <div className="content workspace">
@@ -48,4 +48,4 @@ class Index extends React.Component {
     }
 }
 
-export default Index
+export default Faq
