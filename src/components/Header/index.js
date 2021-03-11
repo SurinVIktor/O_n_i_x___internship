@@ -7,7 +7,7 @@ const designLinks = 'https://www.figma.com/file/HC62Px6p0GaiZyuhPul93T/Chat-Dash
 const gitAnchor = 'Link'
 const gitLinks = 'https://github.com/SurinVIktor/O_n_i_x___internship'
 
-class Header extends React.Component {
+class Index extends React.Component {
     render() {
         return (
             <div>
@@ -40,4 +40,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header
+export default Index

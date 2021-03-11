@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 
+import "./style.css";
+
 let biography = [
     {id: 1, date: 1991, description: 'Was born. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'},
     {id: 2, date: 2013, description: 'Graduated from university. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'},
@@ -8,14 +10,17 @@ let biography = [
     {id: 5, date: 2014, description: 'Got a job. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}
 ];
 
-const Table = () => {
+const Index = () => {
     const [data, setData] = useState(biography);
+    const [year, setYear] = useState('');
+    const [desc, setDesc] = useState('');
 
-    const addItem = () => {
+    const addItem = (e) => {
         setData([
             ...data,
-            {date: 2020, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'}
+            {id: Date.now(),date: year, description: desc}
         ]);
+        e.preventDefault();
     };
 
     const sort = () => {
@@ -33,14 +38,22 @@ const Table = () => {
 
     return (
         <div className="content workspace">
-            <button type="button"
-                    onClick={sort}>
-                Sort
-            </button>
-            <button type="button"
-                    onClick={addItem}>
-                Add item
-            </button>
+            <div className="row">
+                <form onSubmit={addItem}>
+                    <label htmlFor="inputYear">Year: </label>
+                    <input type="text" onChange={(e) => {setYear(e.target.value)}} name="year" id="inputYear"/>
+                    &nbsp;&nbsp;&nbsp;
+                    <label htmlFor="inputDesc">Description: </label>
+                    <input type="text" onChange={(e) => {setDesc(e.target.value)}} name="desc" id="inputDesc" />
+                    &nbsp;
+                    <button type="submit">Add item</button>
+                </form>
+                <button type="button"
+                        onClick={sort}>
+                    Sort
+                </button>
+            </div>
+
             <table className="table--zigzag">
                 <thead>
                 <tr>
@@ -63,4 +76,4 @@ const Table = () => {
     );
 }
 
-export default Table;
+export default Index;
