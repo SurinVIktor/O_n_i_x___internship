@@ -3,7 +3,7 @@ import Rect from 'react';
 let userName = 'Сурин Виктор';
 let userPosition = 'Web Developer';
 
-class Index extends Rect.Component {
+class User extends Rect.Component {
     render() {
         return (
             <div className="content content--right content--blue author">
@@ -17,4 +17,4 @@ class Index extends Rect.Component {
     }
 }
 
-export default Index
+export default User

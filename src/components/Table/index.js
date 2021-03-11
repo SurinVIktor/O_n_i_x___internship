@@ -10,7 +10,7 @@ let biography = [
     {id: 5, date: 2014, description: 'Got a job. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}
 ];
 
-const Index = () => {
+const Table = () => {
     const [data, setData] = useState(biography);
     const [year, setYear] = useState('');
     const [desc, setDesc] = useState('');
@@ -24,6 +24,7 @@ const Index = () => {
     };
 
     const sort = () => {
+        console.log(data);
         const newData = mySort(data);
         setData(newData);
         console.log(newData);
@@ -46,7 +47,7 @@ const Index = () => {
                 description: el.description,
             }
         })
-        console.log(newData);
+
         return newData;
     }
 
@@ -95,4 +96,4 @@ const Index = () => {
     );
 }
 
-export default Index;
+export default Table;
