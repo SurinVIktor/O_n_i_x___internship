@@ -1,39 +1,44 @@
-import React, {useState} from "react";
+import React from "react";
 
 import "./style.css";
 import {Input, Card} from  "../";
 import {apiUser} from "../../utils/api";
 
-const GitSearch = () => {
-    const [value, setValue] = useState("");
-    const [users, setUsers] = useState("");
-
-    const onChange = event => {
-        setValue(event.target.value);
+class GitSearch extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {value: '', users: ''};
     }
 
-    const onSubmit = event => {
+    onChange(e) {
+        this.setState(({
+            value: e.target.value
+        }));
+    }
+
+    onSubmit (event) {
         if (event.key !== 'Enter') {
             return ;
         }
 
-        if (value.trim()) {
-            apiUser(value).then(res => {
-                setUsers(res.data.items);
-                console.log(users);
-            });
-        }
+        apiUser(this.state.value).then(res => {
+            this.setState(({
+                users: res.data.items
+            }));
+        });
     }
 
-    return (
-        <div className="content workspace">
-            <Input onChange={onChange} value={value} onSubmit={onSubmit}/>
+    render () {
+        return (
+            <div className="content workspace">
+                <Input onChange={this.onChange.bind(this)} onSubmit={this.onSubmit.bind(this)}/>
 
-            <div className="users-container">
-                {users ? users.map(user => <Card data={user} />) : <h3>Не найдено</h3>}
+                <div className="users-container">
+                    {this.state.users ? this.state.users.map(user => <Card data={user} />) : <h3>Не найдено</h3>}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default GitSearch;
