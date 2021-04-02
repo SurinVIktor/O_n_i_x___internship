@@ -16,40 +16,20 @@ const Table = () => {
     const [desc, setDesc] = useState('');
 
     const addItem = (e) => {
+        e.preventDefault();
+
         setData([
             ...data,
             {id: Date.now(),date: year, description: desc}
         ]);
-        e.preventDefault();
     };
 
     const sort = () => {
         console.log(data);
-        const newData = mySort(data);
-        setData(newData);
-        console.log(newData);
+        data.sort((a, b) => a.date - b.date);
+        setData([...data]);
+        console.log(data);
     };
-
-    const mySort = (data) => {
-        for (let n = 0; n < data.length; n++) {
-            for (let i = 0; i < data.length - 1 - n; i++) {
-                if (data[i].date > data[i + 1].date) {
-                    const buff = data[i]
-                    data[i] = data[i + 1]
-                    data[i + 1] = buff
-                }
-            }
-        }
-        let newData = data.map((el, index) => {
-            return {
-                id: Date.now(),
-                date: el.date,
-                description: el.description,
-            }
-        })
-
-        return newData;
-    }
 
     const deleteRow = (id) => {
         const newData = data.filter(item => item.id !== id);
