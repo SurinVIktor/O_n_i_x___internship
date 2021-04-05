@@ -14,6 +14,7 @@ const Table = () => {
     const [data, setData] = useState(biography);
     const [year, setYear] = useState('');
     const [desc, setDesc] = useState('');
+    const [currentTr, setCurrentTr] = useState(null);
 
     const addItem = (e) => {
         e.preventDefault();
@@ -35,6 +36,28 @@ const Table = () => {
         const newData = data.filter(item => item.id !== id);
         setData(newData);
     };
+
+    const dragStartHandler = (e, card) => {
+        setCurrentTr(card);
+    }
+
+    const dragOverHandler = (e) => {
+        e.preventDefault();
+    }
+
+    const dropHandler = (e, card) => {
+        e.preventDefault();
+        setData(data.map(c => {
+            if (c.id === card.id) {
+                return {...c, id: currentTr.id}
+            }
+            if (c.id === currentTr.id) {
+                return {...c, id: card.id}
+            }
+
+            return c;
+        }));
+    }
 
     return (
         <div className="content workspace">
@@ -63,8 +86,15 @@ const Table = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {data && data.map(item => (
-                    <tr key={item.date}>
+                {data && data.sort((a, b) => a.id - b.id).map(item => (
+                    <tr
+                        onDragStart={(e) => dragStartHandler(e, item)}
+                        onDragOver={(e) => dragOverHandler(e)}
+                        onDrop={(e) => dropHandler(e, item)}
+                        draggable={true}
+                        className="card"
+                        key={item.date}
+                    >
                         <td>{item.date}</td>
                         <td>{item.description}</td>
                         <td><button onClick={deleteRow.bind(this, item.id)}>Del</button></td>
