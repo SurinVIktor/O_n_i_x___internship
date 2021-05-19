@@ -1,7 +1,9 @@
 import './reset.css';
 import './style.css';
 import React from 'react';
+import { withTranslation } from "react-i18next";
 import {Faq, Header, Table, GitSearch, User} from "./components";
+import "./i18n";
 
 function App() {
   return (
@@ -15,4 +17,4 @@ function App() {
   );
 }
 
-export default App;
+export default withTranslation()(App);

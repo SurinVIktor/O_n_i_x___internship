@@ -1,15 +1,17 @@
-import {useState} from "react";
+import { useTranslation } from "react-i18next";
 
 import "./style.css";
 
 const Input = ({onSubmit, onChange, value}) => {
+    const { t } = useTranslation();
+
     return (
         <input
             type="text"
             className="input-component"
             onChange={onChange}
             onKeyPress={onSubmit}
-            placeholder="Поиск пользователя..."
+            placeholder={t("input.placeholder")}
             value={value}
         />
     );

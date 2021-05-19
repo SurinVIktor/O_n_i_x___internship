@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Spin } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -6,67 +7,54 @@ import "./style.css";
 import {Input, Card, Modal} from  "../";
 import {apiUser} from "../../utils/api";
 
-class GitSearch extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: '', users: null, isLoading: '', status: {}, modal: false};
+const GitSearch = () => {
+    const [ value, setValue ] = useState('');
+    const [ users, setUsers ] = useState(null);
+    const [ isLoading, setIsLoading ] = useState('');
+    const [ status, setStatus ] = useState({ value: 'error', text: '' });
+    const [ modal, setModal ] = useState(false);
+
+    const { t } = useTranslation();
+
+    const onChange = (e) => {
+        setValue(e.target.value);
     }
 
-    onChange(e) {
-        this.setState(({
-            value: e.target.value
-        }));
-    }
-
-    onSubmit (event) {
+    const onSubmit = (event) => {
         if (event.key !== 'Enter') {
             return;
         }
 
-        this.setState({
-            isLoading: true,
-            users: '',
-            modal: true,
-        });
+        setIsLoading(true);
+        setUsers('');
+        setModal(true);
 
-        apiUser(this.state.value).then(res => {
-            this.setState(({
-                users: res.data.items,
-                status: {
-                    value: 'success',
-                    text: 'Все окей!!!'
-                },
-                isLoading: false
-            }));
+        apiUser(value).then(res => {
+            setUsers(res.data.items);
+            setStatus({ value: 'success', text: t("git_search.ok_msg") });
+            setIsLoading(false);
         }).catch( error => {
-            this.setState(({
-                users: false,
-                status: {
-                    value: 'error',
-                    text: error
-                },
-                isLoading: ''
-            }));
+            setUsers(false);
+            setStatus({ value: 'error', text: error});
+            setIsLoading('');
         });
     }
 
-    render () {
-        return (
-            <div className="content workspace">
-                <Modal showModal={this.state.modal} statusModal={this.state.status.value} bodyModal={this.state.status.text} headerModal="" />
-                <Input onChange={this.onChange.bind(this)} onSubmit={this.onSubmit.bind(this)}/>
+    return (
+        <div className="content workspace">
+            <Modal showModal={modal} statusModal={status.value} bodyModal={status.text} headerModal="" />
+            <Input onChange={onChange.bind(this)} onSubmit={onSubmit.bind(this)}/>
 
-                <div className="users-container">
-                    {
-                        this.state.isLoading
-                            ? <Spin tip="Загрузка..." />
-                            : this.state.users?.length === 0 ? <h3>Не найдено</h3> : ''
-                    }
-                    {this.state.users?.length > 0 ? this.state.users.map(user => <Card data={user} />) : ''}
-                </div>
+            <div className="users-container">
+                {
+                    isLoading
+                        ? <Spin tip={t("git_search.spin")} />
+                        : users?.length === 0 ? <h3>Не найдено</h3> : ''
+                }
+                {users?.length > 0 ? users.map(user => <Card data={user} />) : ''}
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default GitSearch;

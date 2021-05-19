@@ -1,20 +1,18 @@
 import Rect from 'react';
+import { useTranslation } from "react-i18next";
 
-let userName = 'Сурин Виктор';
-let userPosition = 'Web Developer';
+const User = () => {
+    const { t } = useTranslation();
 
-class User extends Rect.Component {
-    render() {
-        return (
-            <div className="content content--right content--blue author">
-                <div className="author__img"></div>
-                <div>
-                    <div className="author__name">{userName}</div>
-                    <div className="author__info">{userPosition}</div>
-                </div>
+    return (
+        <div className="content content--right content--blue author">
+            <div className="author__img"></div>
+            <div>
+                <div className="author__name">{t("user.name")}</div>
+                <div className="author__info">{t("user.position")}</div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default User

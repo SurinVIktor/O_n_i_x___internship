@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { useTranslation } from "react-i18next";
 
 import "./style.css";
 
@@ -15,6 +16,8 @@ const Table = () => {
     const [year, setYear] = useState('');
     const [desc, setDesc] = useState('');
     const [currentTr, setCurrentTr] = useState(null);
+
+    const { t } = useTranslation();
 
     const addItem = (e) => {
         e.preventDefault();
@@ -63,26 +66,26 @@ const Table = () => {
         <div className="content workspace">
             <div className="row">
                 <form onSubmit={addItem}>
-                    <label htmlFor="inputYear">Year: </label>
+                    <label htmlFor="inputYear">{t("table.year")}: </label>
                     <input type="text" onChange={(e) => {setYear(e.target.value)}} name="year" id="inputYear"/>
                     &nbsp;&nbsp;&nbsp;
-                    <label htmlFor="inputDesc">Description: </label>
+                    <label htmlFor="inputDesc">{t("table.description")}: </label>
                     <input type="text" onChange={(e) => {setDesc(e.target.value)}} name="desc" id="inputDesc" />
                     &nbsp;
-                    <button type="submit">Add item</button>
+                    <button type="submit">{t("table.add_item")}</button>
                 </form>
                 <button type="button"
                         onClick={sort}>
-                    Sort
+                    {t("table.sort")}
                 </button>
             </div>
 
             <table className="table--zigzag">
                 <thead>
                 <tr>
-                    <th>Year</th>
-                    <th>Event</th>
-                    <th>Action</th>
+                    <th>{t("table.year")}</th>
+                    <th>{t("table.event")}</th>
+                    <th>{t("table.action")}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -97,7 +100,7 @@ const Table = () => {
                     >
                         <td>{item.date}</td>
                         <td>{item.description}</td>
-                        <td><button onClick={deleteRow.bind(this, item.id)}>Del</button></td>
+                        <td><button onClick={deleteRow.bind(this, item.id)}>{t("table.del")}</button></td>
                     </tr>
                 ))}
                 </tbody>
